@@ -23,3 +23,4 @@ rootProject.name = "BackgroundRecording"
 include(":app")
 include(":common")
 include(":di")
+include(":data")

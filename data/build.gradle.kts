@@ -1,12 +1,11 @@
 plugins {
     alias(libs.plugins.ksp)
-    alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.nikasov.di"
+    namespace = "com.nikasov.data"
     compileSdk = 34
 
     defaultConfig {
@@ -32,9 +31,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":common"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.dagger.hilt.android)
-    ksp(libs.dagger.hilt.compiler)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
 }
