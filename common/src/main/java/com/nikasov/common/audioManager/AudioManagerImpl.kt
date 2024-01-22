@@ -2,9 +2,8 @@ package com.nikasov.common.audioManager
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.net.Uri
 import android.util.Log
-import androidx.core.net.toUri
-import java.io.File
 import java.io.IOException
 
 class AudioManagerImpl(
@@ -13,9 +12,9 @@ class AudioManagerImpl(
 
     private var player: MediaPlayer? = null
 
-    override fun play(file: File) {
+    override fun play(uri: Uri) {
         MediaPlayer().apply {
-            setDataSource(file.path)
+            setDataSource(context, uri)
             try {
                 prepare()
                 start()

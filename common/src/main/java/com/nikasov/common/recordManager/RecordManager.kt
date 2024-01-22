@@ -1,11 +1,11 @@
 package com.nikasov.common.recordManager
 
+import android.net.Uri
 import kotlinx.coroutines.flow.Flow
-import java.io.File
 
 interface RecordManager {
     val state: Flow<RecordingState>
-    fun start(outputFile: File)
+    fun start(uri: Uri)
     fun pause()
     fun resume()
     fun stop()

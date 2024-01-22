@@ -52,6 +52,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":di"))
     implementation(project(":data"))
+    implementation(project(":domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

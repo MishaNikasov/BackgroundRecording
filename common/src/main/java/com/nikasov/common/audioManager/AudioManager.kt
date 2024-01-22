@@ -1,9 +1,9 @@
 package com.nikasov.common.audioManager
 
-import java.io.File
+import android.net.Uri
 
 interface AudioManager {
-    fun play(file: File)
+    fun play(uri: Uri)
     fun pause()
     fun stop()
 }
