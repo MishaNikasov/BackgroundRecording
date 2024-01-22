@@ -4,7 +4,6 @@ import android.content.Context
 import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -51,8 +50,8 @@ class RecordManagerImpl(
                 mediaRecorder = this
                 recordingState.tryEmit(RecordingState.InProgress)
             } catch (e: IOException) {
-                Log.e("RecordManagerImpl", e.localizedMessage.orEmpty())
                 fileDescriptor?.close()
+                e.printStackTrace()
             }
         }
     }

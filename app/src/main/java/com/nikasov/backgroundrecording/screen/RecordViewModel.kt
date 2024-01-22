@@ -8,6 +8,7 @@ import com.nikasov.data.recordStorage.RecordStorageManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,7 +20,9 @@ class RecordViewModel @Inject constructor(
     val recordingState = recordManager.state.stateIn(viewModelScope, SharingStarted.Lazily, RecordingState.Stopped)
 
     fun startRecording() {
-        recordStorageManager.createRecordUri("sampleAudio.mp3")?.let { recordManager.start(it) }
+        viewModelScope.launch {
+            recordStorageManager.createRecordUri("sampleAudio.mp3")?.let { recordManager.start(it) }
+        }
     }
 
     fun pauseRecording() {

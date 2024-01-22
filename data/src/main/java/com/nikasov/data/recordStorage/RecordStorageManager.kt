@@ -2,9 +2,10 @@ package com.nikasov.data.recordStorage
 
 import android.net.Uri
 import com.nikasov.domain.repository.entity.Media
+import kotlinx.coroutines.flow.Flow
 
 interface RecordStorageManager {
-    fun getRecordingsList(): List<Media>
-    fun createRecordUri(name: String): Uri?
-    fun removeRecord(uri: Uri)
+    val recordings: Flow<List<Media>>
+    suspend fun createRecordUri(name: String): Uri?
+    suspend fun removeRecord(uri: Uri)
 }
