@@ -6,27 +6,16 @@ import android.content.Context
 import android.net.Uri
 import android.provider.MediaStore
 import com.nikasov.common.Constants
-import com.nikasov.domain.repository.entity.Media
+import com.nikasov.domain.manager.MediaEntity
+import com.nikasov.domain.manager.MediaStorageManager
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.withContext
 
-class RecordStorageManagerImpl(
+class MediaStorageManagerImpl(
     private val context: Context,
-) : RecordStorageManager {
+) : MediaStorageManager {
 
-    private val list: MutableStateFlow<List<Media>> = MutableStateFlow(emptyList())
-
-    override val recordings: Flow<List<Media>>
-        get() = list.onStart { fetch() }
-
-    private suspend fun fetch() = withContext(Dispatchers.IO) {
-        list.emit(getRecordingsList())
-    }
-
-    private suspend fun getRecordingsList(): List<Media> = withContext(Dispatchers.IO) {
+    override suspend fun getMediaList(): List<MediaEntity> = withContext(Dispatchers.IO) {
         val projection = arrayOf(
             MediaStore.Audio.Media._ID,
             MediaStore.Audio.Media.DISPLAY_NAME,
@@ -35,7 +24,7 @@ class RecordStorageManagerImpl(
         val sortOrder = "${MediaStore.Audio.Media.DATE_TAKEN} DESC"
         val selection = "${MediaStore.Audio.Media.RELATIVE_PATH} LIKE ?"
         val selectionArgs = arrayOf("%${Constants.RECORDINGS_FOLDER_NAME}%")
-        val audios = mutableListOf<Media>()
+        val mediaList = mutableListOf<MediaEntity>()
         context.contentResolver.query(
             MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
             projection,
@@ -52,13 +41,13 @@ class RecordStorageManagerImpl(
                 val name = cursor.getString(nameColumn)
                 val duration = cursor.getLong(durationColumn)
                 val uri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id)
-                audios.add(Media(id, name, uri, duration))
+                mediaList.add(MediaEntity(id, name, uri, duration))
             }
         }
-        return@withContext audios.toList()
+        return@withContext mediaList.toList()
     }
 
-    override suspend fun createRecordUri(name: String): Uri? = withContext(Dispatchers.IO) {
+    override suspend fun createMediaUri(name: String): Uri? = withContext(Dispatchers.IO) {
         val uri = context.contentResolver.insert(
             MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
             ContentValues().apply {
@@ -71,9 +60,8 @@ class RecordStorageManagerImpl(
         return@withContext uri
     }
 
-    override suspend fun removeRecord(uri: Uri): Unit = withContext(Dispatchers.IO) {
+    override suspend fun removeMedia(uri: Uri): Unit = withContext(Dispatchers.IO) {
         context.contentResolver.delete(uri, null, null)
-        fetch()
     }
 
 }

@@ -1,4 +1,4 @@
-package com.nikasov.backgroundrecording.ui.theme
+package com.nikasov.theme
 
 import androidx.compose.ui.graphics.Color
 

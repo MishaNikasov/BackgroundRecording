@@ -1,10 +1,10 @@
-package com.nikasov.backgroundrecording.screen
+package com.nikasov.backgroundrecording.screen.recording
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nikasov.common.recordManager.RecordManager
 import com.nikasov.common.recordManager.RecordingState
-import com.nikasov.data.recordStorage.RecordStorageManager
+import com.nikasov.domain.manager.MediaStorageManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
@@ -14,14 +14,14 @@ import javax.inject.Inject
 @HiltViewModel
 class RecordViewModel @Inject constructor(
     private val recordManager: RecordManager,
-    private val recordStorageManager: RecordStorageManager,
+    private val mediaStorageManager: MediaStorageManager,
 ) : ViewModel() {
 
     val recordingState = recordManager.state.stateIn(viewModelScope, SharingStarted.Lazily, RecordingState.Stopped)
 
     fun startRecording() {
         viewModelScope.launch {
-            recordStorageManager.createRecordUri("sampleAudio.mp3")?.let { recordManager.start(it) }
+            mediaStorageManager.createMediaUri("sampleAudio.mp3")?.let { recordManager.start(it) }
         }
     }
 

@@ -5,8 +5,8 @@ import com.nikasov.common.audioManager.AudioManager
 import com.nikasov.common.audioManager.AudioManagerImpl
 import com.nikasov.common.recordManager.RecordManager
 import com.nikasov.common.recordManager.RecordManagerImpl
-import com.nikasov.data.recordStorage.RecordStorageManager
-import com.nikasov.data.recordStorage.RecordStorageManagerImpl
+import com.nikasov.domain.manager.MediaStorageManager
+import com.nikasov.data.recordStorage.MediaStorageManagerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +24,6 @@ class ManagerModule {
     fun provideRecordManager(@ApplicationContext context: Context): RecordManager = RecordManagerImpl(context)
 
     @Provides
-    fun provideRecordStorageManager(@ApplicationContext context: Context): RecordStorageManager = RecordStorageManagerImpl(context)
+    fun provideRecordStorageManager(@ApplicationContext context: Context): com.nikasov.domain.manager.MediaStorageManager = MediaStorageManagerImpl(context)
 
 }

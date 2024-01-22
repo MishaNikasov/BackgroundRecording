@@ -1,8 +1,8 @@
-package com.nikasov.domain.repository.entity
+package com.nikasov.domain.manager
 
 import android.net.Uri
 
-data class Media(
+data class MediaEntity(
     val id: Long,
     val name: String,
     val uri: Uri,

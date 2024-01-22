@@ -8,7 +8,8 @@ data class RecordEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val date: Long,
-    val filePath: String,
+    val duration: Long,
+    val fileUri: String,
     val name: String
 )
 

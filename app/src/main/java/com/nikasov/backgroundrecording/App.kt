@@ -1,4 +1,4 @@
-package com.nikasov
+package com.nikasov.backgroundrecording
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -1,25 +1,17 @@
 plugins {
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.dagger.hilt)
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.nikasov.backgroundrecording"
+    namespace = "com.nikasov.theme"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.nikasov.backgroundrecording"
         minSdk = 28
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -49,22 +41,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":theme"))
-    implementation(project(":common"))
-    implementation(project(":di"))
-    implementation(project(":domain"))
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.dagger.hilt.android)
-    implementation(libs.androidx.hilt.navigation.compose)
-    ksp(libs.dagger.hilt.compiler)
-
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

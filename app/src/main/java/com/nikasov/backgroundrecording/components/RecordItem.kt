@@ -1,4 +1,4 @@
-package com.nikasov.backgroundrecording.screen
+package com.nikasov.backgroundrecording.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -15,12 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.nikasov.common.extensions.millisToReadableTimeFormat
-import com.nikasov.domain.repository.entity.Media
+import com.nikasov.domain.entity.AppRecord
 
 @Composable
 fun RecordItem(
-    item: Media,
-    onClick: (Media) -> Unit,
+    item: AppRecord,
+    onClick: (AppRecord) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
