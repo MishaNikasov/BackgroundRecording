@@ -1,4 +1,4 @@
-package com.nikasov.common.recordManager
+package com.nikasov.common.manager.recordManager
 
 import android.net.Uri
 import kotlinx.coroutines.flow.Flow

@@ -1,10 +1,10 @@
 package com.nikasov.di
 
 import android.content.Context
-import com.nikasov.common.audioManager.AudioManager
-import com.nikasov.common.audioManager.AudioManagerImpl
-import com.nikasov.common.recordManager.RecordManager
-import com.nikasov.common.recordManager.RecordManagerImpl
+import com.nikasov.common.manager.audioManager.AudioManager
+import com.nikasov.common.manager.audioManager.AudioManagerImpl
+import com.nikasov.common.manager.recordManager.RecordManager
+import com.nikasov.common.manager.recordManager.RecordManagerImpl
 import com.nikasov.data.manager.MediaDataSyncManagerImpl
 import com.nikasov.data.mediaStorage.MediaStorageManagerImpl
 import com.nikasov.data.storage.AppStorageImpl

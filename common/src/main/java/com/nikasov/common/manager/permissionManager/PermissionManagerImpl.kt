@@ -1,4 +1,4 @@
-package com.nikasov.common.permissionManager
+package com.nikasov.common.manager.permissionManager
 
 import android.app.Activity
 import android.content.pm.PackageManager

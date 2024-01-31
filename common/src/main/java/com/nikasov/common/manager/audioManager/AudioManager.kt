@@ -1,4 +1,4 @@
-package com.nikasov.common.audioManager
+package com.nikasov.common.manager.audioManager
 
 import android.net.Uri
 

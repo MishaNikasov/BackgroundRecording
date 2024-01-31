@@ -1,5 +1,6 @@
 package com.nikasov.backgroundrecording.screen.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +11,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SwipeToDismiss
 import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -22,11 +24,15 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination
 @Composable
-fun HomeScreen(
+fun RecordingsScreen(
     navigator: DestinationsNavigator,
-    viewModel: HomeViewModel = hiltViewModel(),
+    viewModel: RecordingsViewModel = hiltViewModel(),
 ) {
     val records by viewModel.records.collectAsState()
+    LaunchedEffect(true) {
+        Log.i("HomeScreen", "HomeScreen: synced")
+        viewModel.sync()
+    }
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),

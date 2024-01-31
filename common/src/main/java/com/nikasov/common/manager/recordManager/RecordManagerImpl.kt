@@ -1,4 +1,4 @@
-package com.nikasov.common.recordManager
+package com.nikasov.common.manager.recordManager
 
 import android.content.Context
 import android.media.MediaRecorder
@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Build
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import java.io.IOException
 
 class RecordManagerImpl(
@@ -33,7 +32,7 @@ class RecordManagerImpl(
     }
 
     override val state: Flow<RecordingState>
-        get() = recordingState.asStateFlow()
+        get() = recordingState
 
     override fun start(uri: Uri) {
         val fileDescriptor = context.contentResolver.openFileDescriptor(uri, "w")

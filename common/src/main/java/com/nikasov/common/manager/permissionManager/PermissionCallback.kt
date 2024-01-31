@@ -1,4 +1,4 @@
-package com.nikasov.common.permissionManager
+package com.nikasov.common.manager.permissionManager
 
 sealed class PermissionCallback {
     data object Granted : PermissionCallback()
