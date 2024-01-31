@@ -10,19 +10,21 @@ import kotlinx.coroutines.flow.map
 import java.time.LocalDate
 
 class RecordRepositoryImpl(
-    private val recordDao: RecordDao
+    private val recordDao: RecordDao,
 ) : RecordRepository {
 
     override val recordings: Flow<List<AppRecord>> = recordDao.recordList().map { list ->
-        list.map { item ->
-            AppRecord(
-                id = item.id,
-                date = LocalDate.ofEpochDay(item.date),
-                name = item.name,
-                uri = Uri.parse(item.fileUri),
-                duration = item.duration,
-            )
-        }
+        list
+            .map { item ->
+                AppRecord(
+                    id = item.id,
+                    date = LocalDate.ofEpochDay(item.date),
+                    name = item.name,
+                    uri = Uri.parse(item.fileUri),
+                    duration = item.duration,
+                )
+            }
+            .sortedBy { it.date }
     }
 
     override suspend fun deleteRecord(id: Long) {

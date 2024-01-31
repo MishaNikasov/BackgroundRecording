@@ -9,4 +9,5 @@ interface RecordManager {
     fun pause()
     fun resume()
     fun stop()
+    fun cancel()
 }

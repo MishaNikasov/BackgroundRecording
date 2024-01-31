@@ -1,4 +1,4 @@
-package com.nikasov.backgroundrecording.screen.home
+package com.nikasov.backgroundrecording.screen.recordings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

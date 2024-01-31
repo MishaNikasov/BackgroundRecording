@@ -77,4 +77,13 @@ class RecordManagerImpl(
             recordingState.tryEmit(RecordingState.Stopped)
         }
     }
+
+    override fun cancel() {
+        mediaRecorder?.apply {
+            reset()
+            release()
+            mediaRecorder = null
+            recordingState.tryEmit(RecordingState.Stopped)
+        }
+    }
 }

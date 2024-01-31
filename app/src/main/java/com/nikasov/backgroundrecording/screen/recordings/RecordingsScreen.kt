@@ -1,4 +1,4 @@
-package com.nikasov.backgroundrecording.screen.home
+package com.nikasov.backgroundrecording.screen.recordings
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
@@ -38,7 +38,7 @@ fun RecordingsScreen(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(records) { item ->
+        items(records.reversed()) { item ->
             val state = rememberDismissState(
                 confirmValueChange = {
                     if (it == DismissValue.DismissedToStart || it == DismissValue.DismissedToEnd) {
