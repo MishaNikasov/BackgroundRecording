@@ -10,18 +10,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
-import com.nikasov.backgroundrecording.screen.home.HomeScreen
-import com.nikasov.backgroundrecording.screen.recording.RecordingScreen
+import com.nikasov.backgroundrecording.screen.NavGraphs
 import com.nikasov.common.permissionManager.PermissionCallback
 import com.nikasov.common.permissionManager.PermissionManager
 import com.nikasov.common.permissionManager.PermissionManagerImpl
 import com.nikasov.theme.BackgroundRecordingTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 const val TAG = "App log"
@@ -83,19 +81,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BackgroundRecordingTheme {
-                Box(
+                DestinationsNavHost(
+                    navGraph = NavGraphs.root,
                     modifier = Modifier
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                         .statusBarsPadding()
-                ) {
-                    Column(
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        RecordingScreen()
-                        HomeScreen()
-                    }
-                }
+                )
             }
         }
     }

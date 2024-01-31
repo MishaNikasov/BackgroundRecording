@@ -61,9 +61,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
     implementation(libs.dagger.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.dagger.hilt.compiler)
+
+    implementation(libs.compose.destinations.core)
+    ksp(libs.compose.destinations.ksp)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)

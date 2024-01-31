@@ -16,10 +16,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nikasov.backgroundrecording.components.RecordItem
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @OptIn(ExperimentalMaterial3Api::class)
+@Destination
 @Composable
 fun HomeScreen(
+    navigator: DestinationsNavigator,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val records by viewModel.records.collectAsState()

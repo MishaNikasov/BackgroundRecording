@@ -37,7 +37,7 @@ dependencies {
     implementation(project(":data"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.dagger.hilt.android)
     implementation(libs.androidx.room.runtime)
+    implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
 }

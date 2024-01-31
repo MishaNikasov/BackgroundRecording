@@ -39,4 +39,6 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     annotationProcessor(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
+
+    implementation(libs.datasotore)
 }

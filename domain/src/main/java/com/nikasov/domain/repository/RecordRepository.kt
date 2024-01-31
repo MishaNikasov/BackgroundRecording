@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface RecordRepository {
     val recordings: Flow<List<AppRecord>>
     suspend fun deleteRecord(id: Long)
-    suspend fun insertRecord()
+    suspend fun insertRecord(record: AppRecord)
 }

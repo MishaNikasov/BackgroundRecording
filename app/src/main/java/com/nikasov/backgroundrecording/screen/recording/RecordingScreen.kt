@@ -15,12 +15,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.nikasov.backgroundrecording.screen.destinations.HomeScreenDestination
 import com.nikasov.common.recordManager.RecordingState.InProgress
 import com.nikasov.common.recordManager.RecordingState.Paused
 import com.nikasov.common.recordManager.RecordingState.Stopped
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@RootNavGraph(start = true)
+@Destination
 @Composable
 fun RecordingScreen(
+    navigator: DestinationsNavigator,
     viewModel: RecordViewModel = hiltViewModel(),
 ) {
     val state by viewModel.recordingState.collectAsState()
@@ -59,7 +66,10 @@ fun RecordingScreen(
                 Button(
                     modifier = Modifier.weight(1f),
                     enabled = state != Stopped,
-                    onClick = { viewModel.stopRecording() }
+                    onClick = {
+                        viewModel.stopRecording()
+                        navigator.navigate(HomeScreenDestination)
+                    }
                 ) {
                     Text("Stop")
                 }

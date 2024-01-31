@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nikasov.common.recordManager.RecordManager
 import com.nikasov.common.recordManager.RecordingState
-import com.nikasov.domain.manager.MediaStorageManager
+import com.nikasov.domain.manager.MediaDataSyncManager
+import com.nikasov.domain.mediaStorage.MediaStorageManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
@@ -15,6 +16,7 @@ import javax.inject.Inject
 class RecordViewModel @Inject constructor(
     private val recordManager: RecordManager,
     private val mediaStorageManager: MediaStorageManager,
+    private val mediaDataSyncManager: MediaDataSyncManager
 ) : ViewModel() {
 
     val recordingState = recordManager.state.stateIn(viewModelScope, SharingStarted.Lazily, RecordingState.Stopped)
@@ -35,6 +37,7 @@ class RecordViewModel @Inject constructor(
 
     fun stopRecording() {
         recordManager.stop()
+        viewModelScope.launch { mediaDataSyncManager.sync() }
     }
 
 }
