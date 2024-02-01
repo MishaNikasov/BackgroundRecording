@@ -13,7 +13,7 @@ interface RecordDao {
     @Query("SELECT * FROM RECORD")
     fun recordList(): Flow<List<RecordEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecord(recordEntity: RecordEntity): Long
 
     @Delete

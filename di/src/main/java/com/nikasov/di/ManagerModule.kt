@@ -3,6 +3,8 @@ package com.nikasov.di
 import android.content.Context
 import com.nikasov.common.manager.audioManager.AudioManager
 import com.nikasov.common.manager.audioManager.AudioManagerImpl
+import com.nikasov.common.manager.notification.NotificationManager
+import com.nikasov.common.manager.notification.NotificationManagerImpl
 import com.nikasov.common.manager.recordManager.RecordManager
 import com.nikasov.common.manager.recordManager.RecordManagerImpl
 import com.nikasov.data.manager.MediaDataSyncManagerImpl
@@ -38,6 +40,10 @@ class ManagerModule {
     @Singleton
     @Provides
     fun provideAppStorage(@ApplicationContext context: Context): AppStorage = AppStorageImpl(context)
+
+    @Singleton
+    @Provides
+    fun provideNotificationManager(@ApplicationContext context: Context): NotificationManager = NotificationManagerImpl(context)
 
     @Singleton
     @Provides

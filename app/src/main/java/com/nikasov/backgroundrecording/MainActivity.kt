@@ -31,30 +31,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private val audioRecordingPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-        if (isGranted) {
-            Log.i(TAG, "Recording permission granted")
-        } else {
-            Log.i(TAG, "Recording permission not granted")
-        }
-    }
-
     override fun onStart() {
         super.onStart()
-        requestAudioRecordingPermission()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             requestStoragePermission()
-        }
-    }
-
-    private fun requestAudioRecordingPermission() {
-        val permission = Manifest.permission.RECORD_AUDIO
-        permissionManager.requestPermission(this, permission) { permissionCallback ->
-            when (permissionCallback) {
-                PermissionCallback.Granted -> return@requestPermission
-                PermissionCallback.NotGranted -> audioRecordingPermission.launch(permission)
-                PermissionCallback.Rationale -> audioRecordingPermission.launch(permission)
-            }
         }
     }
 

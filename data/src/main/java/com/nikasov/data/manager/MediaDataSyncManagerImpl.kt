@@ -19,7 +19,8 @@ class MediaDataSyncManagerImpl(
 
     override suspend fun sync() = withContext(Dispatchers.IO) {
         if (mediaStorageManager.mediaStoreVersion != appStorage.lastSyncedVersion.first()) {
-            mediaStorageManager.getMediaList().forEach { item ->
+            val l = mediaStorageManager.getMediaList()
+            l.forEach { item ->
                 //todo move to mapper
                 recordRepository.insertRecord(
                     AppRecord(
