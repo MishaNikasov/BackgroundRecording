@@ -5,8 +5,9 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.util.Log
 import java.io.IOException
+import javax.inject.Inject
 
-class AudioManagerImpl(
+class AudioManagerImpl @Inject constructor(
     private val context: Context,
 ) : AudioManager {
 

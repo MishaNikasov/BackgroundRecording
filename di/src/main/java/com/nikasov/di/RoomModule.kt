@@ -14,6 +14,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class RoomModule {
 
+    @Provides
+    fun provideContext(@ApplicationContext context: Context): Context = context
+
     @Singleton
     @Provides
     fun provideRecordDao(recordDatabase: RecordDatabase) = recordDatabase.recordDao()

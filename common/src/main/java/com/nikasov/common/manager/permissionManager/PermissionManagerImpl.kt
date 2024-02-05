@@ -4,8 +4,9 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import javax.inject.Inject
 
-class PermissionManagerImpl: PermissionManager {
+class PermissionManagerImpl @Inject constructor(): PermissionManager {
 
     override fun requestPermission(activity: Activity, permission: String, callback: (PermissionCallback) -> Unit) {
         when {

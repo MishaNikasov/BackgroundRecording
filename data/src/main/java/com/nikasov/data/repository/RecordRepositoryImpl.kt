@@ -8,8 +8,9 @@ import com.nikasov.domain.repository.RecordRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.LocalDate
+import javax.inject.Inject
 
-class RecordRepositoryImpl(
+class RecordRepositoryImpl @Inject constructor(
     private val recordDao: RecordDao,
 ) : RecordRepository {
 

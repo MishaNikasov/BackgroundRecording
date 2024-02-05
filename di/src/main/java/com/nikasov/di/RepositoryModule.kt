@@ -1,21 +1,19 @@
 package com.nikasov.di
 
 import com.nikasov.data.repository.RecordRepositoryImpl
-import com.nikasov.data.room.RecordDao
 import com.nikasov.domain.repository.RecordRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class RepositoryModule {
+abstract class RepositoryModule {
 
+    @Binds
     @Singleton
-    @Provides
-    fun provideRecordRepository(recordDao: RecordDao): RecordRepository =
-        RecordRepositoryImpl(recordDao)
+    abstract fun provideRecordRepository(recordRepositoryImpl: RecordRepositoryImpl): RecordRepository
 
 }

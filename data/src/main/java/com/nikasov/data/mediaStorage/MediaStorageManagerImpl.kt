@@ -10,8 +10,9 @@ import com.nikasov.domain.mediaStorage.MediaEntity
 import com.nikasov.domain.mediaStorage.MediaStorageManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class MediaStorageManagerImpl(
+class MediaStorageManagerImpl @Inject constructor(
     private val context: Context,
 ) : MediaStorageManager {
 

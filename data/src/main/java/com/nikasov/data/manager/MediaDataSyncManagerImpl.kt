@@ -10,8 +10,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import java.time.Instant
 import java.time.ZoneId
+import javax.inject.Inject
 
-class MediaDataSyncManagerImpl(
+class MediaDataSyncManagerImpl @Inject constructor(
     private val mediaStorageManager: MediaStorageManager,
     private val appStorage: AppStorage,
     private val recordRepository: RecordRepository

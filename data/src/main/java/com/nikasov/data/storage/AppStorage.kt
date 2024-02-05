@@ -8,9 +8,10 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.nikasov.domain.storage.AppStorage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class AppStorageImpl(
-    context: Context
+class AppStorageImpl @Inject constructor(
+    context: Context,
 ) : AppStorage {
 
     companion object {

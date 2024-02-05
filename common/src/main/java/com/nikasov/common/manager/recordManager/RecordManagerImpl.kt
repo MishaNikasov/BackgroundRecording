@@ -7,8 +7,9 @@ import android.os.Build
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.io.IOException
+import javax.inject.Inject
 
-class RecordManagerImpl(
+class RecordManagerImpl @Inject constructor(
     private val context: Context,
 ) : RecordManager {
 

@@ -5,8 +5,9 @@ import android.app.NotificationChannel
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import androidx.core.app.NotificationCompat
+import javax.inject.Inject
 
-class NotificationManagerImpl(
+class NotificationManagerImpl @Inject constructor(
     private val context: Context,
 ) : NotificationManager {
 
